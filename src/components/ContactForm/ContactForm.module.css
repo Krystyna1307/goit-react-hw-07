@@ -1,0 +1,25 @@
+.wrapper {
+  /* min-height: 100vh; */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
+  padding: 15px;
+  & button {
+    padding: 10px 15px;
+  }
+}
+label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+input {
+  font-family: inherit;
+  text-indent: 5px;
+  padding: 8px;
+  font-size: inherit;
+}

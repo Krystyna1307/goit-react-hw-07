@@ -33,6 +33,11 @@ const slice = createSlice({
       })
       .addCase(fetchContacts.pending, (state, action) => {
         state.contacts.loading = true;
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.contacts.items = state.contacts.items.filter(
+          (item) => item.id !== action.payload.id
+        );
       });
   },
 });

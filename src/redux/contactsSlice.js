@@ -9,6 +9,7 @@ const initialState = {
       { id: "id-3", name: "Eden Clements", number: "645-17-79" },
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
+    loading: false,
   },
 };
 
@@ -26,9 +27,13 @@ const slice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchContacts.fulfilled, (state, action) => {
-      state.contacts.items = action.payload;
-    });
+    builder
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.contacts.items = action.payload;
+      })
+      .addCase(fetchContacts.pending, (state, action) => {
+        state.contacts.loading = true;
+      });
   },
 });
 export const { deleteContact, addContact } = slice.actions;

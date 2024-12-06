@@ -19,16 +19,16 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.contacts.items = action.payload;
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+        state.contacts.items = payload;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.contacts.items = state.contacts.items.filter(
           (item) => item.id !== action.payload.id
         );
       })
-      .addCase(addContact.fulfilled, (state, action) => {
-        state.contacts.items.push(action.payload);
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.contacts.items.push(payload);
       })
 
       .addMatcher(
@@ -37,7 +37,7 @@ const slice = createSlice({
           deleteContact.pending,
           addContact.pending
         ),
-        (state, action) => {
+        (state) => {
           state.loading = true;
           state.error = null;
         }
@@ -48,7 +48,7 @@ const slice = createSlice({
           deleteContact.rejected,
           addContact.rejected
         ),
-        (state, action) => {
+        (state) => {
           state.loading = false;
           state.error = true;
         }
@@ -59,7 +59,7 @@ const slice = createSlice({
           deleteContact.fulfilled,
           addContact.fulfilled
         ),
-        (state, action) => {
+        (state) => {
           state.loading = false;
         }
       );

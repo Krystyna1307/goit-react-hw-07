@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchContacts } from "../redux/contactsOps";
 import { selectLoading } from "../redux/selectors";
-// import { selectLoading } from "../redux/contactsSlice";
 
 const App = () => {
   const dispatch = useDispatch();
